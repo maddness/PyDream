@@ -1,4 +1,4 @@
-def fail_proof(fn, times=1):
+def fail_proof(fn, times=3):
     def wrapper(*args, **kwargs):
         for i in range(times):
             try:
@@ -10,16 +10,19 @@ def fail_proof(fn, times=1):
     return wrapper
 
 
-def good_one(a):
+@fail_proof
+def good_one():
     return str
 
 
-@good_one
+@fail_proof
 def gonna_fail():
     raise NameError('Not so fast...')
 
 
-# fail_safe = fail_proof(gonna_fail, 3)
-print gonna_fail()
+# old style
+fail_safe = fail_proof(gonna_fail, 3)
+print fail_safe()
 
-# try_me()
+# cool style
+print gonna_fail()
