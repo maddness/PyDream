@@ -23,12 +23,9 @@ def search():
     if len(pokemon_line) > len(best_line):
         best_line = pokemon_line[:]
 
-    if len(pokemon_line) == 0:
-        print best_line
-
 
 if __name__ == '__main__':
-    with open('../data/poke_small.txt') as f:
+    with open('../data/pokemons.txt') as f:
         pokemons = sum(map(lambda x: x.split(), f.readlines()), [])
 
     indexes = [Item(i) for i in range(len(pokemons))]
@@ -37,6 +34,8 @@ if __name__ == '__main__':
     pokemon_line = []
 
     search()
+
+    print best_line
 
 
 
